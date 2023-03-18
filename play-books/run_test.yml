@@ -1,0 +1,15 @@
+---
+- name: Run Goss tests using Python script
+  hosts: ubuntu_hosts
+  become: yes
+  become_user: root
+  tasks:
+    - name: Run run-audit1.py Python script
+      ansible.builtin.shell:
+        cmd: python3 run-audit.py
+        chdir: /home/ubuntu/auditDownyVibez
+      register: goss_output
+
+    - name: Display Goss test results
+      ansible.builtin.debug:
+        var: goss_output.stdout_lines
