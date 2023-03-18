@@ -1,0 +1,22 @@
+---
+- name: Prerequisites
+  hosts: ubuntu_hosts
+  become: yes
+  become_user: root
+  tasks:
+    - name: Clone auditDownyVibez repository
+      ansible.builtin.git:
+        repo: https://github.com/grenishtri/auditDownyVibez.git
+        dest: /home/ubuntu/auditDownyVibez
+
+    - name: Download Goss binary
+      ansible.builtin.get_url:
+        url: https://github.com/goss-org/goss/releases/latest/download/goss-linux-amd64
+        dest: /usr/local/bin/goss
+        mode: '0755'
+
+    - name: Install python
+      ansible.builtin.apt:
+        name: python3
+        state: present
+        update_cache: yes
