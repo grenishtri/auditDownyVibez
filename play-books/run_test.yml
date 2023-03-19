@@ -4,9 +4,9 @@
   become: yes
   become_user: root
   tasks:
-    - name: Run run-audit1.py Python script
+    - name: Run run-audit.py Python script
       ansible.builtin.shell:
-        cmd: python3 run-audit.py
+        cmd: python3 run_audit.py
         chdir: /home/ubuntu/auditDownyVibez
       register: goss_output
 
